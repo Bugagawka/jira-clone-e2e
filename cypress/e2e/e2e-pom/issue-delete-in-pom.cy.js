@@ -17,7 +17,7 @@ describe('Issue delete', () => {
 
   it('Should delete issue successfully', () => {
     //Find delete button on issue detailed view and click it
-    IssueModal.findDeleteButton()
+    IssueModal.clickDeleteButton()
     //In confirmation view find the blue "Delete" button and click it.
     //Pop-up closes and returns to previous page
     IssueModal.confirmDeletion()
@@ -28,13 +28,13 @@ describe('Issue delete', () => {
 
   it('Should cancel deletion process successfully', () => {
     //Find delete button on issue detailed view and click it
-    IssueModal.findDeleteButton()
+    IssueModal.clickDeleteButton()
     //In confirmation view find the blue "Cancel" button and click it.
     //Pop-up closes and returns to previous page
     IssueModal.cancelDeletion()
     //Close issue report window
     IssueModal. closeDetailModal()
     //Assert that issue is visible on the board
-    IssueModal.ensureIssueIsNotVisibleOnBoard(issueTitle)
+    IssueModal.ensureIssueIsVisibleOnBoard(issueTitle)
   });
 });

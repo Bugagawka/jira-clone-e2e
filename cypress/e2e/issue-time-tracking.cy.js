@@ -8,7 +8,7 @@ describe('Issue time tracking', () => {
             cy.get('[data-testid="modal:issue-create"]').within(() => {
                 cy.get('[data-testid="select:reporterId"]').click();
                 cy.get('[data-testid="select-option:Pickle Rick"]').click().wait(1000);
-                cy.get('input[name="title"]').type('Tasdasdasdasdsad');
+                cy.get('input[name="title"]').type('Bugagawka');
                 cy.get('button[type="submit"]').click();
             });
             // Assertion for having the issue create window closed
@@ -19,7 +19,7 @@ describe('Issue time tracking', () => {
 
     const getTextBox = () => cy.get('[placeholder="Number"]');
     const closeWindow = () => cy.get('[data-testid="icon:close"]');
-    const issueName = () => cy.contains('Tasdasdasdasdsad');
+    const issueName = () => cy.contains('Bugagawka');
     const trackTime = () => cy.get('[data-testid="icon:stopwatch"]');
     const trackTimeWindow = () => cy.get('[data-testid="modal:tracking"]');
     const noTimeLogged = () => cy.contains('No time logged');

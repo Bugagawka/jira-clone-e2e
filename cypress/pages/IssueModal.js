@@ -91,11 +91,11 @@ class IssueModal {
             cy.contains(issueTitle).should('not.exist');
     }
 
-    findDeleteButton(){
-        cy.get(this.issueDetailModal).within(() => {
-            cy.get(this.deleteButton).click();
-        });
-    }
+    // findDeleteButton(){
+    //     cy.get(this.issueDetailModal).within(() => {
+    //         cy.get(this.deleteButton).click();
+    //     });
+    // }
 
     clickDeleteButton() {
         cy.get(this.deleteButton).click();

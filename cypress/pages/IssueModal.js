@@ -91,6 +91,12 @@ class IssueModal {
             cy.contains(issueTitle).should('not.exist');
     }
 
+    findDeleteButton(){
+        cy.get(this.issueDetailModal).within(() => {
+            cy.get(this.deleteButton).click();
+        });
+    }
+
     clickDeleteButton() {
         cy.get(this.deleteButton).click();
         cy.get(this.confirmationPopup).should('be.visible');
@@ -116,6 +122,7 @@ class IssueModal {
         cy.get(this.issueDetailModal).get(this.closeDetailModalButton).first().click();
         cy.get(this.issueDetailModal).should('not.exist');
     }
+
 }
 
 export default new IssueModal();

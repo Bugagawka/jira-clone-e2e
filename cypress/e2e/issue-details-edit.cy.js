@@ -7,6 +7,51 @@ describe('Issue details editing', () => {
     });
   });
 
+  it("TASK #1: Checks the values in the issue priorities dropdown", () => {
+    // Define expected lenght
+    const expectedLength = 5;
+    // Create empty constant
+    let emptyArray = [];
+    // Select current value
+    cy.get('[data-testid="select:priority"]').click();
+    cy.contains('High').then(($option) => {
+      const initialValue = $option.text().trim();
+      // Push the value to constant "emptyArray"
+      emptyArray.push(initialValue);
+      // Log "emptyArray" constant
+      cy.log(`Added value: ${emptyArray}, Array length: ${emptyArray.length}`);
+      // Get all the options inside the dropdown
+      cy.get('[data-testid^="select-option:"]').each(($option) => {
+        // Extract and log the text content of each option
+        const optionText = $option.text().trim();
+        emptyArray.push(optionText);
+        cy.log(`Added value: ${optionText}, Array length: ${emptyArray.length}`);
+      }).then(() => {
+        // Log the final array after the loop is complete
+        cy.log('Final Array:', emptyArray);
+        // Assert that the array has the expected length
+        expect(emptyArray).to.have.length(expectedLength);
+      });
+    });
+  });
+
+
+  it("TASK #2: Validate reporter name has only characters in it.", () => {
+    cy.get('[data-testid="select:reporter"]').invoke('text').then((text) => {
+      // Set constants for better usage. Also regex had to be modified because it did not contain spaces.
+      const regex = /^[A-Za-z ]*$/;
+      const isValid = regex.test(text);
+      // Log to the console the result of validation
+      if (expect(isValid).to.be.true){
+        cy.log(`Reporter's name is matching the provided regex!`)
+      }
+      else {
+        cy.log(`Reporter's name does not match the specifications!`)
+      }
+    });
+  });
+
+
   it('Should update type, status, assignees, reporter, priority successfully', () => {
     getIssueDetailsModal().within(() => {
       cy.get('[data-testid="select:type"]').click('bottomRight');
